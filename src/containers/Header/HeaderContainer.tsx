@@ -15,6 +15,6 @@ export default HeaderContainer;
 
 const HeaderBlock = styled.header`
   width:100%;
-  height:73px;
-  border-bottom:1px solid #000000;
+  height:72px;
+  border-bottom:1px solid rgba(0,0,0,.1);
 `

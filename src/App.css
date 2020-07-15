@@ -1,0 +1,29 @@
+
+h1,h2,h3,h4,h5,h6 {
+  margin:0;
+}
+a {
+  text-decoration: none;
+  color:black;
+}
+
+input:focus, button:focus {
+  outline:none;
+}
+
+input,button {
+  padding:0;
+}
+
+button {
+  cursor:pointer;
+  border-radius: 8px;
+}
+
+ul,p {
+  margin:0;
+  padding:0;
+}
+li {
+  list-style:none;
+}

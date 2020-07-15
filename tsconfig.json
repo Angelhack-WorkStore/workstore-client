@@ -11,7 +11,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "typeRoots": ["./types"],
     "forceConsistentCasingInFileNames": true,
+    "declaration": true, // lib 만들 때 .d.ts 파일을 자동으로
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,

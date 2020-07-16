@@ -34,6 +34,9 @@ const DescriptBlock = styled.div`
   .box {
     position:sticky;
     top:80px;
+    span {
+      color:#8F919B;
+    }
   }
   h5 {
     font-weight:bold;
@@ -73,7 +76,7 @@ const RegistrationTemplate = ({children}:TemplateProps) => {
 
   const header = useMemo(() => {
     if(step === 'step1') {
-      setWidth('20%');
+      setWidth('16.5%');
       return (
         <div className="box">
           <h5>STEP 01</h5>
@@ -82,12 +85,48 @@ const RegistrationTemplate = ({children}:TemplateProps) => {
         </div>
       )
     } else if(step === 'step2') {
-      setWidth('40%');
+      setWidth('33%');
       return (
         <div className="box">
           <h5>STEP 02</h5>
-          <h2>세부 정보를<br/> 추가해주세요</h2>
-          <p>호스트 등록을 위해 공유하실 공간에 대한<br/> 기본 정보를 알려주세요!</p>
+          <h2>사진과 글로<br/> 공간을 소개해주세요</h2>
+          <p>공간에 대해 자세히 설명할 수록<br/> 고객들의 예약률이 높아져요!</p>
+        </div>
+      )
+    } else if(step === 'step3') {
+      setWidth('49.5%');
+      return (
+        <div className="box">
+          <h5>STEP 03</h5>
+          <h2>세부정보를<br/> 추가해주세요</h2>
+          <p>고객이 이용할 시간과 인원 등을 설정해주세요!</p>
+        </div>
+      )
+    } else if(step === 'step4') {
+      setWidth('66%');
+      return (
+        <div className="box">
+          <h5>STEP 04</h5>
+          <h2>이용정보를<br/> 입력해볼까요?</h2>
+          <p>고객이 공간을 이용할 시간을 설정해주세요!</p>
+        </div>
+      )
+    } else if(step === 'step5') {
+      setWidth('82.5%');
+      return (
+        <div className="box">
+          <h5>STEP 05<span> - STEP 06</span></h5>
+          <h2>운영하실 예약 단위를<br/> 골라주세요</h2>
+          <p>예약을 하루 단위로 받으실 건지, 개월 단위로 받으실 건지<br/> 아니면 둘 다 받으실 건지 선택해주세요!</p>
+        </div>
+      )
+    } else if(step === 'step6') {
+      setWidth('100%');
+      return (
+        <div className="box">
+          <h5>STEP 06</h5>
+          <h2>마지막이에요!<br/> 예약 상세정보를<br/> 설정해주세요</h2>
+          <p>예약을 하루 단위로 받으실 건지, 개월 단위로 받으실 건지<br/> 아니면 둘 다 받으실 건지 선택해주세요!</p>
         </div>
       )
     }

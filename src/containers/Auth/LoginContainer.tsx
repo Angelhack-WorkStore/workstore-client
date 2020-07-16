@@ -22,7 +22,7 @@ const LoginContainer = () => {
       [id]: value,
     })
   }
-
+  const OAuth2_Redirect_Uri = 'http://localhost:3000/'
   const handleSubmitLogin = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     loginAPI({email,password})
@@ -34,12 +34,12 @@ const LoginContainer = () => {
       <h2>호스트 로그인</h2>
       <S.SocialButton 
         bgColor="#FADE4B" 
-        onClick={() => (window as any).location = 'http://localhost:8080/oauth2/authorize/kakao?redirect_uri={OAuth2_Redirect_Uri}'}
+        onClick={() => (window as any).location = `http://localhost:8080/oauth2/authorize/kakao?redirect_uri=${OAuth2_Redirect_Uri}`}
       >
         카카오 계정으로 로그인
       </S.SocialButton>
       <S.SocialButton
-        onClick={() => (window as any).location = 'http://localhost:8080/oauth2/authorize/google?redirect_uri={OAuth2_Redirect_Uri}'}
+        onClick={() => (window as any).location = `http://localhost:8080/oauth2/authorize/google?redirect_uri=${OAuth2_Redirect_Uri}`}
       >
         구글 계정으로 로그인
       </S.SocialButton>

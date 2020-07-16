@@ -68,7 +68,7 @@ const HeaderUtil = () => {
       setNavLocation(154)
     } else if( pathname === '/review') {
       setNavLocation(264)
-    } 
+    }
   },[pathname])
   
   return (

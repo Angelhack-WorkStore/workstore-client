@@ -18,37 +18,11 @@ type OptionType = {
   url:string,
   body:any,
 }
-// const request = (options:OptionType) => {
-//   const headers = new Headers({
-//       'Content-Type': 'application/json',
-//   })
-  
-//   if(localStorage.getItem(ACCESS_TOKEN)) {
-//       headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
-//   }
-
-//   const defaults = {headers: headers};
-//   options = Object.assign({}, defaults, options);
-
-//   console.log(options);
-//   return http({
-//     method:'post',
-//     url:options.url,
-//     body:options.body
-//   })
-//   .then(response => {
-//     response.data
-//   })
-//   .catch((error:Error) => {
-//     console.log(error);
-//   })
-// };
 
 export const loginAPI = async(loginRequest:LoginProps) => {
   const headers = new Headers({
     'Content-Type': 'application/json',
   })
-
   if(localStorage.getItem(ACCESS_TOKEN)) {
     headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
   }
@@ -56,7 +30,6 @@ export const loginAPI = async(loginRequest:LoginProps) => {
   const defaults = {headers: headers};
   const options = Object.assign({}, defaults, loginRequest);
   console.log(options);
-
   return http.post('/auth/login', {options})
 }
 
@@ -64,15 +37,18 @@ export const signupAPI = async(signupRequest:SignupProps) => {
   const headers = new Headers({
     'Content-Type': 'application/json',
   })
-
   if(localStorage.getItem(ACCESS_TOKEN)) {
       headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
   }
-
   const defaults = {headers: headers};
   const options = Object.assign({}, defaults, signupRequest);
   console.log(options);
-  return http.post('/auth/signup', {options})
+  console.log(signupRequest);
+  return http.post('/auth/signup', {
+    email:signupRequest.email,
+    password:signupRequest.password,
+    name:signupRequest.name,
+  })
 }
 
 export const logoutAPI = () => {

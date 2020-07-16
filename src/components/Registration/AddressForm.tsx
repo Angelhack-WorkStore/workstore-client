@@ -1,13 +1,14 @@
 import React,{useState, useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components';
-import {putValue} from '../../store/modules/registration';
+import {putAdress} from '../../store/modules/registration';
 import {RootState} from '../../store/modules/index';
 import {Input} from '../Common/CustomInput';
 
 const AddressForm = () => {
-  
-  const {zipCode,address1,address2} = useSelector((state:RootState) => state.registration);
+  // zipCode,address1,address2
+  const {address} = useSelector((state:RootState) => state.registration);
+  const {address1,address2,zipCode} = address
   const dispatch = useDispatch();
 
   const detailRef = useRef<HTMLInputElement>(null);
@@ -27,11 +28,11 @@ const AddressForm = () => {
     new (window as any).daum.Postcode({
       oncomplete: function(data:any) {
         if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-          dispatch(putValue('addr',data.roadAddress))
+          dispatch(putAdress('address1',data.roadAddress))
         } else { // 사용자가 지번 주소를 선택했을 경우(J)
-          dispatch(putValue('addr',data.jibunAddress))
+          dispatch(putAdress('address1',data.jibunAddress))
         }
-        dispatch(putValue('zipCode',data.zonecode))
+        dispatch(putAdress('zipCode',data.zonecode))
         if(detailRef.current) {
           detailRef.current.focus();
         }
@@ -41,7 +42,7 @@ const AddressForm = () => {
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {id, value} = event.target
-    dispatch(putValue(id, value));
+    dispatch(putAdress(id, value));
   }
 
   return (

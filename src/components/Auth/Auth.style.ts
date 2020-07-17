@@ -63,6 +63,9 @@ const AuthButton = styled.button`
   font-size:15px;
   font-weihgt:bold;
   margin-top:8px;
+  &:hover {
+    background:${({theme}) => theme.accentHover};
+  }
 ` 
 
 const NomemBlock = styled.div`

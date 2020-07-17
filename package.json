@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -12,8 +13,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "axios": "^0.19.2",
+    "lodash": "^4.17.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
@@ -21,6 +24,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.1",
     "typescript": "^3.7.5"
   },
@@ -33,6 +38,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:8080",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -46,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.157",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1"
   }

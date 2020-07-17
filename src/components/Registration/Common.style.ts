@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {device} from '../../styles/MediaHoc';
 
 export const StepContainer = styled.div`
   h3 {
@@ -6,12 +7,16 @@ export const StepContainer = styled.div`
     font-size:28px;
   }
   h4 {
-    margin:32px 0 8px;
+    margin-top:32px;
+    margin-bottom:12px;
     font-size:18px;
+  }
+  h4 + p {
+    margin-top:-4px;
   }
   p {
     color:${({theme}) => theme.lightColor};
-    margin-bottom:16px;
+    margin:12px 0 16px;
     font-size:13px;
     line-height:19px;
   }
@@ -32,15 +37,27 @@ export const StepContainer = styled.div`
     margin-top:62px;
   }
   .FooterNav {
-    position:relative;
-    bottom:0;
     display:flex;
     justify-content:space-between;
+    @media ${device.laptopL} {
+      position:relative;
+      margin-top:50px;
+    }
+    button {
+      width:50%;
+      border-radius:0;
+    }
+    button.prev_btn {
+      border:1px solid ${({theme}) => theme.strokeColor};
+      background:white;
+      color:${({theme}) => theme.accentColor};
+    }
   }
   hr {
     border:none;
     background:rgba(0,0,0,.1);
-    height:1;
+    height:1px;
+    margin-bottom:28px;
   }
   
 `

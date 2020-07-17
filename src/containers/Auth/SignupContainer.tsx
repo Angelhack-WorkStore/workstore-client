@@ -88,9 +88,9 @@ const SignupContainer = () => {
         <div className="or">또는</div>
       </S.Orline>
       <form onSubmit={handleSignupSubmit}>
-        <AuthInput id="email" type="email" name="이메일 주소" value={email} onChange={handleInputChange}/>
-        <AuthInput id="name" name="이름" value={name} onChange={handleInputChange}/>
-        <AuthInput id="password" type="password" name="비밀번호 설정" value={password} onChange={handleInputChange}/>
+        <AuthInput id="email" type="email" name="이메일 주소" width={'618px'} value={email} onChange={handleInputChange}/>
+        <AuthInput id="name" name="이름" value={name} width={'618px'} onChange={handleInputChange}/>
+        <AuthInput id="password" type="password" name="비밀번호 설정" width={'618px'} value={password} onChange={handleInputChange}/>
         <S.CheckBoxBlock topMargin="24px">
           <div>
             <input onChange={handleCheckChange} id="allAgree" type="checkbox"/>

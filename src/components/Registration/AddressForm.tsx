@@ -58,6 +58,11 @@ const AddressForm = () => {
 const ButtonInput = styled(Input)`
   padding:0;
   margin:0 0 8px 8px;
+  cursor:pointer;
+  background:${({theme}) => theme.subBtnColor};
+  &:hover {
+    background:${({theme}) => theme.subBtnHover};
+  }
 `
 
 export default AddressForm;

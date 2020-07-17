@@ -6,6 +6,9 @@ a {
   text-decoration: none;
   color:black;
 }
+a:hover {
+  color:black;
+}
 
 input:focus, button:focus {
   outline:none;
@@ -13,11 +16,13 @@ input:focus, button:focus {
 
 input,button {
   padding:0;
+ 
 }
 
 button {
   cursor:pointer;
   border-radius: 8px;
+  
 }
 
 ul,p {

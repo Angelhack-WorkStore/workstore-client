@@ -17,13 +17,23 @@ const StepContainer = styled.div`
     font-size:18px;
   }
   .nextBtn {
+    display:flex;
+    justify-content: flex-end;
     width:100%;
     text-align:right;
+    margin-top:50px;
+    border-top:1px solid ${({theme}) => theme.strokeColor};
+    button {
+      width:50%;
+      border-radius:0;
+      margin-top:18px;
+    }
   }
 `
+
 const Step1 = () => {
-  const {name, hostInfo, website} = useSelector((state:RootState) => state.registration )
-  const {hostPhoneNumber, hostEmail} = hostInfo
+  const {name, hostInfo} = useSelector((state:RootState) => state.registration )
+  const {hostPhoneNumber, hostEmail, site} = hostInfo
   const dispatch = useDispatch();
 
   const handleHostInfoChange = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +62,7 @@ const Step1 = () => {
       <h4>호스트 이메일</h4>
       <Input id="hostEmail" onChange={handleHostInfoChange} value={hostEmail} name="ex. workstore@email.com"/>
       <h4>웹사이트</h4>
-      <Input id="website" onChange={handleInputsChange} value={website} name="ex. www.workstore.co.kr"/>
+      <Input id="site" onChange={handleHostInfoChange} value={site} name="ex. www.workstore.co.kr"/>
       <div className="nextBtn">
         <PrimaryButton onClick={handleNextClick}>다음</PrimaryButton>
       </div>

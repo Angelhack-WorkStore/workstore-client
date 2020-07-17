@@ -1,30 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import {PrimaryButton} from '../Common/CustomButton';
 
-
-const InfoContainer = styled.section`
-  width:1200px;
-  height:968px;
-  padding-bottom:260px;
-  margin:0 auto;
+const EmptyContainer = styled.div`
+  width:100%;
+  min-height:488px;
   text-align:center;
-  h2 {
-    margin-bottom:80px;
+  .image_box {
+    display:inline-block;
+    padding-top:60px;
+    width:150px;
+    height:150px;
+    font-size:80px;
+    margin-top:58px;
+    border-radius:50%;
+    background:#E6F3F2;
   }
-  hr {
-    border-color:rgba(0,0,0,.1);
+  p {
+    margin-top:32px;
+    font-size:16px;
   }
 `
+
 const EmptySpaceInfo = () => {
   
   
   return (
-    <>
-    <InfoContainer>
-      <h2>공간정보 관리</h2>
-      <hr/>
-    </InfoContainer>
-    </>
+    <EmptyContainer>
+      <div className="image_container">
+        <div className="image_box">🏡</div>
+        <p>운영중인 공간이 없습니다.<br/> 등록하러 가볼까요?</p>
+      </div>
+      <Link to="registration">
+        <PrimaryButton width={'184px'} height={'48px'}>공간 등록하기</PrimaryButton>
+      </Link>
+    </EmptyContainer>
   )
 }
 

@@ -31,7 +31,7 @@ const NoticeForm = () => {
 
   const handleAddClick = (index:number) => {
     if((index === notices.length - 1) && (index !== 9)) {
-      dispatch(addNotice('asd'))
+      dispatch(addNotice(''))
     } else {
       dispatch(removeNotice(index))
     }
@@ -45,7 +45,7 @@ const NoticeForm = () => {
   
   const handleEnterDown = (event:React.KeyboardEvent<HTMLInputElement>, index:number) => {
     if((index === notices.length - 1) && (index !== 9) && event.keyCode === 13) {
-      dispatch(addNotice('asd'))
+      dispatch(addNotice(''))
     }
   }
 
@@ -54,7 +54,8 @@ const NoticeForm = () => {
       {notices.map((notice,index) => {
         return (
             <RowBox className="row_Box" key={index}>
-              <Input name={"ex. 방문 전에 연락주세요."} 
+              <Input name={"ex. 방문 전에 연락주세요."}
+                defaultValue={notice}
                 onKeyDown={(event:React.KeyboardEvent<HTMLInputElement>) => handleEnterDown(event,index)} 
                 onChange={(event:React.ChangeEvent<HTMLInputElement>) => handleInputChange(event,index)}
               />

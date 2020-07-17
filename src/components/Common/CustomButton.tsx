@@ -29,4 +29,8 @@ export const PrimaryButton = styled.button<PrimayProps>`
   font-size:15px;
   cursor:pointer;
   margin-top:48px;
+  &:hover {
+    background:${({theme}) => theme.accentHover};
+  }
+  transition:background .3s;
 `

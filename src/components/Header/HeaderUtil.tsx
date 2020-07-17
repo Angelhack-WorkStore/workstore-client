@@ -1,6 +1,10 @@
 import React, {useState,useEffect} from 'react';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
 import {useLocation,Link} from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import Logo from '../../lib/mainLogo.png'
+import {RootState} from '../../store/modules';
 
 const UtilContainer = styled.div`
   display:flex;
@@ -9,15 +13,19 @@ const UtilContainer = styled.div`
   width:1200px;
   height:100%;
   margin:0 auto;
-  h3 {
-    font-size:33px;
-    font-weight:bold;
-    cursor:pointer;
-  }
   .loginBtn {
     position:relative;
     right:0px;
     cursor:pointer;
+  }
+  .descript {
+    position:relative;
+    right:0px;
+    font-weight:bold;
+  }
+  .profile_box {
+    display:flex;
+    align-items:center;
   }
 `
 
@@ -27,6 +35,7 @@ const NavContainer = styled.div`
   nav {
     position:relative;
     height: 43px;
+    margin-left:24px;
     ul {
       display:flex;
       height:100%;
@@ -41,6 +50,12 @@ const NavContainer = styled.div`
         }
       }
     }
+  }
+  .logo {
+    position:relative;
+    top:5px;
+    width:164px;
+    height:170px;
   }
 `
 
@@ -57,6 +72,8 @@ type NavLineProps = {
   location:number;
 }
 const HeaderUtil = () => {
+
+  const {name, imageUrl} = useSelector((state:RootState) => state.authentication);
   const location = useLocation();
   const {pathname} = location;
   const [navLocation, setNavLocation] = useState(pathname === '/spaceinfo' ? 29 : pathname === '/reservation' ? 154 : 264)
@@ -74,32 +91,43 @@ const HeaderUtil = () => {
   return (
     <UtilContainer>
       <NavContainer>
-        <h3>
-          <Link to="/">workstore</Link>
-        </h3>
-        <nav>
-          <ul>
-            <li><Link to="/spaceinfo">공간정보 관리</Link></li>
-            <li><Link to="/reservation">예약관리</Link></li>
-            <li><Link to="/review">후기관리</Link></li>
-          </ul>
+          <Link to="/">
+            <img className="logo" src={Logo} alt="logo"/>
+          </Link>
           {
-            (
-              pathname === '/spaceinfo' ||
-              pathname === '/reservation' ||  
-              pathname === '/review'
-            ) && <NavLine location={navLocation}/> 
+            pathname !== '/registration' &&
+              <nav>
+                <ul>
+                  <li><Link to="/spaceinfo">공간정보 관리</Link></li>
+                  <li><Link to="/reservation">예약관리</Link></li>
+                  <li><Link to="/review">후기관리</Link></li>
+                </ul>
+                {
+                  (
+                    pathname === '/spaceinfo' ||
+                    pathname === '/reservation' ||  
+                    pathname === '/review'
+                  ) && <NavLine location={navLocation}/> 
+                }
+              </nav>    
           }
-          
-        </nav>
       </NavContainer>
-      <Link to="/auth/login">
-        {
-          pathname === '/auth/login' || 
-          pathname === '/auth/signup' || 
-          <div className="loginBtn">호스트 로그인</div>
-        }
-      </Link>
+      {
+        pathname === '/registration' ? 
+          <div className="descript">공간 등록 프로세스</div> 
+      :
+        name ? 
+          <div className="profile_box">
+            <Avatar alt={name} src={imageUrl}></Avatar> {name}
+          </div> 
+          : <Link to="/auth/login">
+          {
+            pathname === '/auth/login' || 
+            pathname === '/auth/signup' || 
+            <div className="loginBtn">호스트 로그인</div>
+          }
+          </Link>
+      }
       
     </UtilContainer>
   )

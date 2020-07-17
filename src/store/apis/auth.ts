@@ -1,7 +1,5 @@
 import {http} from '.';
-import {useHistory} from 'react-router-dom';
-const ACCESS_TOKEN = 'accessToken';
-
+import {ACCESS_TOKEN,API_BASE_URL} from '../Contants';
 
 type LoginProps = {
   email:string,
@@ -19,36 +17,43 @@ type OptionType = {
   body:any,
 }
 
-export const loginAPI = async(loginRequest:LoginProps) => {
+const request = (options:any) => {
   const headers = new Headers({
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
   })
-  if(localStorage.getItem(ACCESS_TOKEN)) {
-    headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
-  }
-
-  const defaults = {headers: headers};
-  const options = Object.assign({}, defaults, loginRequest);
-  console.log(options);
-  return http.post('/auth/login', {options})
-}
-
-export const signupAPI = async(signupRequest:SignupProps) => {
-  const headers = new Headers({
-    'Content-Type': 'application/json',
-  })
+  
   if(localStorage.getItem(ACCESS_TOKEN)) {
       headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
   }
+
   const defaults = {headers: headers};
-  const options = Object.assign({}, defaults, signupRequest);
-  console.log(options);
-  console.log(signupRequest);
-  return http.post('/auth/signup', {
-    email:signupRequest.email,
-    password:signupRequest.password,
-    name:signupRequest.name,
-  })
+  options = Object.assign({}, defaults, options);
+
+  return fetch(options.url, options)
+  .then(response => 
+      response.json().then(json => {
+          if(!response.ok) {
+              return Promise.reject(json);
+          }
+          return json;
+      })
+  );
+};
+
+export const loginAPI = async(loginRequest:LoginProps) => {
+  return request({
+    url: API_BASE_URL + "/auth/login",
+    method: 'POST',
+    body: JSON.stringify(loginRequest)
+  });
+}
+
+export const signupAPI = async(signupRequest:SignupProps) => {
+  return request({
+    url: API_BASE_URL + "/auth/signup",
+    method: 'POST',
+    body: JSON.stringify(signupRequest)
+  });
 }
 
 export const logoutAPI = () => {
@@ -57,7 +62,13 @@ export const logoutAPI = () => {
 
 
 
-export const getCurrentUserAPI = async() => {
-  const userInfo = await http.get('/user/me')
-  console.log(userInfo);
+export const getCurrentUserAPI = async():Promise<any> => {
+  if(!localStorage.getItem(ACCESS_TOKEN)) {
+    return Promise.reject("No access token set.");
+  }
+
+  return request({
+    url:API_BASE_URL + "/admin/accounts",
+    method:'GET'
+  })
 }

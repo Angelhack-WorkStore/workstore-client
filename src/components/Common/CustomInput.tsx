@@ -15,6 +15,9 @@ export const Input = styled.input.attrs(props => ({
     & + & {
       margin-top:8px;
     }
+    &:focus {
+      border-color:${({theme}) => theme.inputFocus};
+    }
 `;
 
 

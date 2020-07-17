@@ -2,7 +2,7 @@ import React,{useState, useMemo} from 'react';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/modules/index';
-
+import {device} from '../../styles/MediaHoc'
 
 
 const TemplateConatiner = styled.main`
@@ -10,6 +10,10 @@ const TemplateConatiner = styled.main`
   height:100%;
   .top_container {
     display:flex;
+    @media ${device.laptopL} {
+      display:block;
+    }
+    
   }
 `
 const ProgressBar = styled.div<ProgressProps>`
@@ -31,9 +35,14 @@ const DescriptBlock = styled.div`
   padding:80px 0 0 10%;
   text-align:left;
   background:${({theme}) => theme.sideBackColor};
+  hr {
+    display:none;
+    border:none;
+    height:1px;
+    background:${({theme}) => theme.strokeColor};
+    margin-top:30px;
+  }
   .box {
-    position:sticky;
-    top:80px;
     span {
       color:#8F919B;
     }
@@ -51,14 +60,29 @@ const DescriptBlock = styled.div`
     font-size:16px;
     line-height: 24px;
   }
+  @media ${device.laptopL} {
+    width:100%;
+    text-align:center;
+    background-color:white;
+    padding-left:0;
+    hr {
+      display:block;
+    }
+  }
 `
 const BodyContainer = styled.div`
+  position:relative;
   width:calc(100% - 638px);
   height:calc(100vh - 79px);
   overflow-y:scroll;
+  @media ${device.laptopL} {
+    width:100%;
+    overflow-y:unset;
+  }
 `
 const ContentBlock = styled.div`
   width:590px;
+  min-height:calc(100vh - 198px);
   margin:120px auto 281px;
 `
 
@@ -67,65 +91,57 @@ type ProgressProps = {
 }
 type TemplateProps = {
   children:React.ReactNode;
+  stepBoxRef:any,
 }
 
-const RegistrationTemplate = ({children}:TemplateProps) => {
+const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
   const [width, setWidth] = useState('25%');
   const {step} = useSelector((state:RootState) => state.registration )
 
 
   const header = useMemo(() => {
     if(step === 'step1') {
-      setWidth('16.5%');
+      setWidth('20%');
       return (
         <div className="box">
-          <h5>STEP 01</h5>
+          <h5>STEP 01<span> - STEP 06</span></h5>
           <h2>공간 정보를<br/> 입력해주세요</h2>
           <p>호스트 등록을 위해 공유하실 공간에 대한<br/> 기본 정보를 알려주세요!</p>
         </div>
       )
     } else if(step === 'step2') {
-      setWidth('33%');
+      setWidth('40%');
       return (
         <div className="box">
-          <h5>STEP 02</h5>
+          <h5>STEP 02<span> - STEP 06</span></h5>
           <h2>사진과 글로<br/> 공간을 소개해주세요</h2>
           <p>공간에 대해 자세히 설명할 수록<br/> 고객들의 예약률이 높아져요!</p>
         </div>
       )
     } else if(step === 'step3') {
-      setWidth('49.5%');
+      setWidth('60%');
       return (
         <div className="box">
-          <h5>STEP 03</h5>
+          <h5>STEP 03<span> - STEP 06</span></h5>
           <h2>세부정보를<br/> 추가해주세요</h2>
-          <p>고객이 이용할 시간과 인원 등을 설정해주세요!</p>
+          <p>시설정보와 유의사항을 설정해주세요!</p>
         </div>
       )
     } else if(step === 'step4') {
-      setWidth('66%');
+      setWidth('80%');
       return (
         <div className="box">
-          <h5>STEP 04</h5>
+          <h5>STEP 04<span> - STEP 06</span></h5>
           <h2>이용정보를<br/> 입력해볼까요?</h2>
           <p>고객이 공간을 이용할 시간을 설정해주세요!</p>
         </div>
       )
     } else if(step === 'step5') {
-      setWidth('82.5%');
-      return (
-        <div className="box">
-          <h5>STEP 05<span> - STEP 06</span></h5>
-          <h2>운영하실 예약 단위를<br/> 골라주세요</h2>
-          <p>예약을 하루 단위로 받으실 건지, 개월 단위로 받으실 건지<br/> 아니면 둘 다 받으실 건지 선택해주세요!</p>
-        </div>
-      )
-    } else if(step === 'step6') {
       setWidth('100%');
       return (
         <div className="box">
-          <h5>STEP 06</h5>
-          <h2>마지막이에요!<br/> 예약 상세정보를<br/> 설정해주세요</h2>
+          <h5>STEP 05<span> - STEP 06</span></h5>
+          <h2>마지막이에요!<br/>운영하실 예약 단위를<br/>선택해주세요</h2>
           <p>예약을 하루 단위로 받으실 건지, 개월 단위로 받으실 건지<br/> 아니면 둘 다 받으실 건지 선택해주세요!</p>
         </div>
       )
@@ -140,8 +156,9 @@ const RegistrationTemplate = ({children}:TemplateProps) => {
       <div className="top_container">
         <DescriptBlock>
           {header}
+        <hr/>
         </DescriptBlock>
-        <BodyContainer>
+        <BodyContainer ref={stepBoxRef}>
           <ContentBlock>
             {children}
           </ContentBlock>

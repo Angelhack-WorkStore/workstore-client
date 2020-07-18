@@ -34,3 +34,18 @@ export const PrimaryButton = styled.button<PrimayProps>`
   }
   transition:background .3s;
 `
+
+export const SubButton = styled.button<PrimayProps>`
+  border:none;
+  width:${props => props.width || '140px'};
+  height:${props => props.height || '55px'};
+  background:${props => props.bgColor || props.theme.subBtnColor};
+  color:${({theme}) => theme.boldColor};
+  font-size:15px;
+  cursor:pointer;
+  margin-top:48px;
+  &:hover {
+    background:${({theme}) => theme.subBtnHover};
+  }
+  transition:background .3s;
+`

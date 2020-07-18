@@ -1,7 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 import {PrimaryButton} from '../Common/CustomButton';
+import {Link, useHistory} from 'react-router-dom';
+import Dialog from '../Common/Dialog';
+import storage from '../../store/storageHoc';
+import {ACCESS_TOKEN} from '../../store/Contants';
 
 const EmptyContainer = styled.div`
   width:100%;
@@ -24,7 +27,28 @@ const EmptyContainer = styled.div`
 `
 
 const EmptySpaceInfo = () => {
-  
+
+  const [visible, setVisible] = useState(false);
+  const history = useHistory();
+
+  const token = storage.get(ACCESS_TOKEN);
+
+  const handleButtonClick = () => {
+    if(token) {
+      history.push('/registration')
+    } else {
+      setVisible(true);
+    }
+  }
+
+  const handleConfirmClick = () => {
+    history.push('/auth/login');
+  }
+
+  const handleCancelClick = () => {
+    setVisible(false);
+  }
+
   
   return (
     <EmptyContainer>
@@ -32,9 +56,23 @@ const EmptySpaceInfo = () => {
         <div className="image_box">🏡</div>
         <p>운영중인 공간이 없습니다.<br/> 등록하러 가볼까요?</p>
       </div>
-      <Link to="registration">
-        <PrimaryButton width={'184px'} height={'48px'}>공간 등록하기</PrimaryButton>
-      </Link>
+      <PrimaryButton 
+        width={'184px'} 
+        height={'48px'}
+        onClick={handleButtonClick}
+      >
+        공간 등록하기
+      </PrimaryButton>
+      <Dialog
+        title="로그인이 필요합니다."
+        cancelText="취소"
+        confirmtext="확인"
+        visible={visible}
+        onConfirm={handleConfirmClick}
+        onCancel={handleCancelClick}
+      >
+        로그인하러 가시겠습니까?
+      </Dialog>
     </EmptyContainer>
   )
 }

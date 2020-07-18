@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Input} from '../Common/CustomInput';
 import {CountInput, LeftButton, RightButton} from './Step3';
 import {useDispatch} from 'react-redux';
-import {selectPriceType} from '../../store/modules/registration';
+import {selectPriceType ,termChange} from '../../store/modules/registration';
 
 const SettingBlock = styled.div`
   position:relative;
@@ -47,7 +47,16 @@ const PriceForm = ({priceType, price, minUsageDay, maxUsageDay}:FormProps) => {
     dispatch(selectPriceType(id, value));
   }
   const handlePriceClick = (name:string, value:number) => {
-    dispatch(selectPriceType(name, value));
+
+    if(name === 'minUsageDay' && value === 1 && maxUsageDay > minUsageDay) {
+      dispatch(termChange(name, value));
+    } else if(name === 'minUsageDay' && value === -1 && minUsageDay > 1){
+      dispatch(termChange(name, value));
+    } else if (name === 'maxUsageDay' && value === 1 && maxUsageDay <30) {
+      dispatch(termChange(name, value));
+    } else if(name === 'maxUsageDay' && value === -1 && minUsageDay < maxUsageDay) {
+      dispatch(termChange(name, value));
+    }
   }
 
 
@@ -71,15 +80,15 @@ const PriceForm = ({priceType, price, minUsageDay, maxUsageDay}:FormProps) => {
             <h4>최소 예약일 선택</h4>
             <CountInput>
               <LeftButton onClick={() => handlePriceClick('minUsageDay',-1)}>-</LeftButton>
-                <span>1일</span>
+                <span>{minUsageDay}일</span>
               <RightButton onClick={() => handlePriceClick('minUsageDay',1)}>+</RightButton>
             </CountInput>
           </div>
           <div>
-            <h4>최소 예약일 선택</h4>
+            <h4>최대 예약일 선택</h4>
             <CountInput>
-              <LeftButton onClick={() => handlePriceClick('maxUsageDay',1)}>-</LeftButton>
-                <span>30일</span>
+              <LeftButton onClick={() => handlePriceClick('maxUsageDay',-1)}>-</LeftButton>
+                <span>{maxUsageDay}일</span>
               <RightButton onClick={() => handlePriceClick('maxUsageDay',1)}>+</RightButton>
             </CountInput>
           </div>

@@ -17,6 +17,10 @@ const MINIMUM_PERSONNEL = 'resitration/MINIMUM_PERSONNEL' as const;
 const SEAT_COUNT = 'resitration/SEAT_COUNT' as const;
 const PUT_MANAGE_INFO = 'resitration/PUT_MANAGE_INFO' as const;
 const SELECT_PRICE_TYPE = 'resitration/SELECT_PRICE_TYPE' as const;
+const CHECK_AMENNITY = 'resitration/CHECK_AMENNITY' as const;
+const UNCHECK_AMENNITY = 'resitration/UNCHECK_AMENNITY' as const;
+const TURM_CHANGE = 'resitration/TURM_CHANGE' as const;
+
 
 export const putValue = (name:string, value:string) => ({
   type:PUT_VALUE,
@@ -131,6 +135,24 @@ export const selectPriceType = (name:string, value:string | number) => ({
   }
 })
 
+export const checkAmennity = (value:string) => ({
+  type:CHECK_AMENNITY,
+  payload:value
+}) 
+
+export const uncheckAmennity = (value:string) => ({
+  type:UNCHECK_AMENNITY,
+  payload:value,
+})
+
+export const termChange = (name:string, value:number) => ({
+  type:TURM_CHANGE,
+  payload:{
+    name,
+    value
+  }
+})
+
 type RegistAction = 
   |  ReturnType<typeof putValue>
   |  ReturnType<typeof putAdress>
@@ -149,6 +171,9 @@ type RegistAction =
   |  ReturnType<typeof seatCounter>
   |  ReturnType<typeof putManageInfo>
   |  ReturnType<typeof selectPriceType>
+  |  ReturnType<typeof checkAmennity>
+  |  ReturnType<typeof uncheckAmennity>
+  |  ReturnType<typeof termChange>
 
   type ManageInfoType = {
     dayOfWeek:string,
@@ -157,7 +182,7 @@ type RegistAction =
     manageType:string,
   }
   
-type RegistType = {
+export type RegistType = {
   name:string,
   address:{
     zipCode:string,
@@ -170,11 +195,10 @@ type RegistType = {
     hostPhoneNumber:string,
   },
   step:string,
-  image:any[],
-  pictures:string[],
+  images:any[],
   description:string,
   content:string,
-  notices:string[],
+  cautionNotes:string[],
   tags:string[],
   seatInfo: {
     seatCount:number,
@@ -207,12 +231,11 @@ const initialState: RegistType = {
     hostEmail:'',
     hostPhoneNumber:''
   },
-  step:'step2',
-  image:[],
-  pictures:[],
+  step:'step3',
+  images:[],
   description:'',
   content:'',
-  notices:[''],
+  cautionNotes:[''],
   tags:[],
   seatInfo: {
     seatCount:1,
@@ -225,43 +248,43 @@ const initialState: RegistType = {
        dayOfWeek:"MONDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"TUESDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"WEDNESDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"THURSDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"FRIDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"SATURDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     },
     {
        dayOfWeek:"SUNDAY",
        startTime:"09:00:00",
        endTime:"22:00:00",
-       manageType:""
+       manageType:"OPERATE"
     }
   ],
   prices:{
@@ -310,7 +333,6 @@ function registration(state: RegistType = initialState, action: RegistAction) {
         }
       case PUT_IMAGE:
         const {size,name,pictype,type} = action.payload;
-        console.log(action.payload)
         let obj = {
           fileName:name,
           size,
@@ -319,22 +341,22 @@ function registration(state: RegistType = initialState, action: RegistAction) {
         }
         return {
           ...state,
-          image:[...state.image, obj]
+          images:[...state.images, obj]
         }
       case ADD_NOTICE:
         return {
           ...state,
-          notices:[...state.notices, action.payload]
+          cautionNotes:[...state.cautionNotes, action.payload]
         }
       case REMOVE_NOTICE:
         return {
           ...state,
-          notices:[...state.notices.slice(0, action.payload), ...state.notices.slice(action.payload + 1, state.notices.length)]
+          cautionNotes:[...state.cautionNotes.slice(0, action.payload), ...state.cautionNotes.slice(action.payload + 1, state.cautionNotes.length)]
         }
       case PUT_NOTICE:
         return {
           ...state,
-          notices:[...state.notices.slice(0, action.payload.id),action.payload.value, ...state.notices.slice(action.payload.id,state.notices.length-1)]
+          cautionNotes:[...state.cautionNotes.slice(0, action.payload.id),action.payload.value, ...state.cautionNotes.slice(action.payload.id + 1,state.cautionNotes.length)]
         }
       case PUT_TAG:
         return {
@@ -393,6 +415,27 @@ function registration(state: RegistType = initialState, action: RegistAction) {
           prices:{
             ...state.prices,
             [action.payload.name]: snap,
+          }
+        }
+      case CHECK_AMENNITY:
+        return {
+          ...state,
+          amenities:[...state.amenities, action.payload],
+        }
+      case UNCHECK_AMENNITY:
+        const dumyIndex = state.amenities.findIndex(dumy => dumy === action.payload);
+        return {
+          ...state,
+          amenities:[...state.amenities.slice(0,dumyIndex), ...state.amenities.slice(dumyIndex + 1, state.amenities.length)],
+        }
+      case TURM_CHANGE:
+        let scheck = action.payload.name === 'minUsageDay' ? state.prices.minUsageDay : state.prices.maxUsageDay;
+        console.log(scheck, action.payload.value);
+        return {
+          ...state,
+          prices:{
+            ...state.prices,
+            [action.payload.name]: scheck + action.payload.value
           }
         }
       default :

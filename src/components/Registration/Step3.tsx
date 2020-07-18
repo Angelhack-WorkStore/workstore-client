@@ -111,6 +111,7 @@ const Step3 = () => {
       <FlexBox className="flex_box">
         <div>
           <h4>예약 가능 최소인원</h4>
+          <p>최소인원은 1명부터 입니다.</p>
           <CountInput>
             <LeftButton onClick={() => handleMinCountClick(-1)}>-</LeftButton>
               <span>{minPersonnelCount}명</span>
@@ -119,6 +120,7 @@ const Step3 = () => {
         </div>
         <div className="cnt_box">
           <h4>예약 가능 최대인원</h4>
+          <p>최대인원수는 좌석 수보다 많을 수 없습니다.</p>
           <CountInput>
             <LeftButton onClick={() => handleMaxCountClick(-1)}>-</LeftButton>
               <span>{maxPersonnelCount}명</span>

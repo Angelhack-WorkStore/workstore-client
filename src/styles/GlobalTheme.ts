@@ -11,5 +11,13 @@ export const globalTheme = {
   subBtnColor:"#ECEFF1",
   subBtnHover:"#F5F7F8",
   inputFocus:"#008B7A",
-  
+  grayColor1:"#F5F7F8",
+  grayColor2:"#ECEFF1",
+  grayColor3:"#E3E6E8",
+  grayColor4:"#BCC0C7",
+  grayColor5:"#8F919B",
+  grayColor6:"#787B85",
+  grayColor7:"#585B67",
+  grayColor8:"#2B2E39",
+
 }

@@ -26,11 +26,11 @@ const RowBox = styled.div`
 
 const NoticeForm = () => {
 
-  const {notices} = useSelector((state:RootState) => state.registration)
+  const {cautionNotes} = useSelector((state:RootState) => state.registration)
   const dispatch = useDispatch();
 
   const handleAddClick = (index:number) => {
-    if((index === notices.length - 1) && (index !== 9)) {
+    if((index === cautionNotes.length - 1) && (index !== 9)) {
       dispatch(addNotice(''))
     } else {
       dispatch(removeNotice(index))
@@ -44,14 +44,14 @@ const NoticeForm = () => {
   }
   
   const handleEnterDown = (event:React.KeyboardEvent<HTMLInputElement>, index:number) => {
-    if((index === notices.length - 1) && (index !== 9) && event.keyCode === 13) {
+    if((index === cautionNotes.length - 1) && (index !== 9) && event.keyCode === 13) {
       dispatch(addNotice(''))
     }
   }
 
   return (
     <FormContainer>
-      {notices.map((notice,index) => {
+      {cautionNotes.map((notice,index) => {
         return (
             <RowBox className="row_Box" key={index}>
               <Input name={"ex. 방문 전에 연락주세요."}
@@ -61,7 +61,7 @@ const NoticeForm = () => {
               />
               <AddButton id={index + 'btn'} onClick={() => handleAddClick(index)}>
                 {
-                  (index === notices.length - 1) && (index !== 9) ? '+' : '-'
+                  (index === cautionNotes.length - 1) && (index !== 9) ? '+' : '-'
                 }
               </AddButton>
             </RowBox>

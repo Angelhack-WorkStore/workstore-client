@@ -1,12 +1,12 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import * as S from '../../components/Auth/Auth.style';
 import {Input} from '../../components/Common/CustomInput';
 import {NoBorderButton} from '../../components/Common/CustomButton';
-import {RootState} from '../../store/modules/index';
 import {signupAPI} from '../../store/apis/auth';
+import {GOOGLE_HREF, KAKAO_HREF} from '../../store/Contants';
 
 
 const SignupContainer = () => {
@@ -77,10 +77,15 @@ const SignupContainer = () => {
   return (
     <S.AuthContainer>
       <h2>호스트 가입</h2>
-      <S.SocialButton bgColor="#FADE4B">
+      <S.SocialButton 
+        bgColor="#FADE4B"
+        onClick={() => (window as any).location = KAKAO_HREF}
+      >
         카카오 계정으로 로그인
       </S.SocialButton>
-      <S.SocialButton>
+      <S.SocialButton
+        onClick={() => (window as any).location = GOOGLE_HREF}
+      >
         구글 계정으로 로그인
       </S.SocialButton>
       <S.Orline>

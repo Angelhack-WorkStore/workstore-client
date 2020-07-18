@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import { BsCheck } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 import {PrimaryButton} from '../Common/CustomButton';
 import {PrevStep, NextStep, selectPriceType} from '../../store/modules/registration';
 import {RootState} from '../../store/modules/index';
 import * as S from './Common.style';
 import PriceForm from './PriceForm';
-import { BsArrowLeft } from "react-icons/bs";
+import {registSaveAPI} from '../../store/apis/registration';
 
 
 const ButtonContainer = styled.div`
@@ -67,15 +68,21 @@ const RefundRow = styled.div`
 `
 const Step5 = () => {
 
-  const {prices} = useSelector((state:RootState) => state.registration)
+  const registData = useSelector((state:RootState) => state.registration)
   const dispatch = useDispatch();
-  const {maxUsageDay,minUsageDay,price,priceType} = prices;
+  const {maxUsageDay,minUsageDay,price,priceType} = registData.prices;
 
   const handleButtonClick = (value:string) => {
     dispatch(selectPriceType('priceType', value));
     dispatch(selectPriceType('price', 0));
   }
   
+  const handleSubmitClock = () => {
+    console.log(registData)
+    registSaveAPI(registData).then(res => console.log(res));
+    
+  }
+
   return (
     <S.StepContainer>
       <ButtonContainer>
@@ -118,7 +125,7 @@ const Step5 = () => {
       </RefundContainer>
       <div className="FooterNav">
         <PrimaryButton className="prev_btn" onClick={() => dispatch(PrevStep(4))}><BsArrowLeft/>&nbsp;이전</PrimaryButton>
-        <PrimaryButton onClick={() => dispatch(NextStep(6))}>등록 완료</PrimaryButton>
+        <PrimaryButton onClick={handleSubmitClock}>등록 완료</PrimaryButton>
       </div>
     </S.StepContainer>
   )

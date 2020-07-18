@@ -89,6 +89,7 @@ const Step4 = () => {
       }
     } else {
       let value = event.target.querySelector('span').innerHTML;
+      console.log(value);
       value = value.substr(0,2) + ':00:00';
       if(name === 'startTime' && parseInt(value) < parseInt(endTime)) {
         dispatch(putManageInfo(name, dayOfWeek, value));

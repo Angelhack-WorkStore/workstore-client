@@ -1,5 +1,5 @@
-const GET_CURRENT_USER = 'registration/SIGNUP_TRY' as const;
-const SIGNUP_TRY = 'registration/SIGNUP_TRY' as const;
+const GET_CURRENT_USER = 'authentication/SIGNUP_TRY' as const;
+const SIGNUP_TRY = 'authentication/SIGNUP_TRY' as const;
 
 
 
@@ -31,7 +31,7 @@ const initialState: AuthenticateType = {
   imageUrl:'',
 }
 
-function registration(state: AuthenticateType = initialState, action: AuthAction) {
+function authentication(state: AuthenticateType = initialState, action: AuthAction) {
   switch (action.type) {
     case GET_CURRENT_USER:
       const {email, name, imageUrl} = action.payload
@@ -46,5 +46,5 @@ function registration(state: AuthenticateType = initialState, action: AuthAction
   }
 }
 
-export default registration
+export default authentication
 

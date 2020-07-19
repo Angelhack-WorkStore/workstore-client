@@ -76,12 +76,12 @@ const HeaderUtil = () => {
   const {name, imageUrl} = useSelector((state:RootState) => state.authentication);
   const location = useLocation();
   const {pathname} = location;
-  const [navLocation, setNavLocation] = useState(pathname === '/spaceinfo' ? 29 : pathname === '/reservation' ? 154 : 264)
+  const [navLocation, setNavLocation] = useState(pathname === '/spaceinfo' ? 29 : pathname === '/resurvation' ? 154 : 264)
 
   useEffect(() => {
     if(pathname === '/spaceinfo') {
       setNavLocation(29)
-    } else if(pathname === '/reservation') {
+    } else if(pathname.match('resurvation')) {
       setNavLocation(154)
     } else if( pathname === '/review') {
       setNavLocation(264)
@@ -95,17 +95,17 @@ const HeaderUtil = () => {
             <img className="logo" src={Logo} alt="logo"/>
           </Link>
           {
-            pathname !== '/registration' &&
+            !pathname.match('/registration/') &&
               <nav>
                 <ul>
                   <li><Link to="/spaceinfo">공간정보 관리</Link></li>
-                  <li><Link to="/reservation">예약관리</Link></li>
+                  <li><Link to={`/resurvation/${name}`}>예약관리</Link></li>
                   <li><Link to="/review">후기관리</Link></li>
                 </ul>
                 {
                   (
                     pathname === '/spaceinfo' ||
-                    pathname === '/reservation' ||  
+                    pathname.match('/resurvation/') ||  
                     pathname === '/review'
                   ) && <NavLine location={navLocation}/> 
                 }

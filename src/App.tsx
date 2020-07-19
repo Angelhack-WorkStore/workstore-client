@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {ThemeProvider} from 'styled-components';
 import {globalTheme} from './styles/GlobalTheme';
 import Header from './containers/Header/HeaderContainer';
-import {MainPage,LoginPage,SignupPage,SpaceInfoPage,RegistrationPage,OAuth2RedirectPage} from './pages';
+import {MainPage,LoginPage,SignupPage,SpaceInfoPage,RegistrationPage,OAuth2RedirectPage,ResurvationPage} from './pages';
 import {getCurrentUserAPI} from './store/apis/auth';
 import {getCurrentUser} from './store/modules/authentication';
 import './App.css';
@@ -48,6 +48,9 @@ function AppSwitch() {
         <Route path="/spaceinfo" component={SpaceInfoPage}></Route>
         <Route path="/registration" component={RegistrationPage}></Route>
         <Route path="/oauth2/redirect" component={OAuth2RedirectPage}></Route>  
+        <Route path="/resurvation/" component={ResurvationPage}></Route>
+        <Route path="/resurvation/:name" component={ResurvationPage}>
+        </Route>
       </Switch>
       
     </>

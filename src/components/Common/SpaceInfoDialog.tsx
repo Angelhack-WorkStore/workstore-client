@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useState,useEffect} from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import {PrimaryButton,SubButton} from './CustomButton';
+import {BsX} from 'react-icons/bs';
 
 const fadeIn = keyframes`
   from {
@@ -143,7 +144,7 @@ function SpaceInfoDialog({title, children, confirmtext,cancelText, visible ,onCo
         <>
            <DarkBackground disappear={!visible}>
                <DialogBlock disappear={!visible}>
-                    <SubShortBtn onClick={onCancel}>{cancelText}</SubShortBtn>
+                    <SubShortBtn onClick={onCancel}><BsX/></SubShortBtn>
                     <h3>{title}</h3>
                     <img src="/images/img.png" alt=""/>
                     <p>{children}</p>

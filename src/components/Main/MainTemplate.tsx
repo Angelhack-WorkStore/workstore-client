@@ -13,6 +13,8 @@ type TemplateType = {
   children: React.ReactNode;
 }
 const MainTemplate = ({children}:TemplateType) => {
+
+
   return (
     <MainContainer>
       {children}

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { ACCESS_TOKEN } from '../store/Contants';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Redirect, useLocation,useHistory } from 'react-router-dom';
 
 
 const OAuth2RedirectPage = () => {
   
   const location = useLocation();
-
+  const history = useHistory();
 
   useEffect(() => {
     tokenCheck();
@@ -17,18 +17,9 @@ const OAuth2RedirectPage = () => {
     const error = getUrlParameter('error');
     if(token) {
         localStorage.setItem(ACCESS_TOKEN, token);
-        return <Redirect to={{
-            pathname: "/profile",
-            state: { from: location }
-        }}/>; 
+        return history.push('/'); 
     } else {
-        return <Redirect to={{
-            pathname: "/auth/login",
-            state: { 
-                from: location,
-                error: error 
-            }
-        }}/>; 
+        return history.push('/auth/login');
     }
   }
 

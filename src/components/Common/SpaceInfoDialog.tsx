@@ -58,18 +58,26 @@ const DarkBackground = styled.div`
 `
 
 const DialogBlock = styled.div`
-    width:480px;
+position:relative;
+    width:450px;
+    min-height:430px;
     padding:1.5rem;
-    text-align:left;
+    text-align:center;
     background-color:white;
-    border-radius:2px;
+    border-radius:8px;
     h3 {
         margin: 0;
+        margin-top:42px;
         font-size: 1.5rem;
     }
     p {
       margin-top:20px;
       font-size: 1.125rem;
+    }
+    img {
+      width:328px;
+      height:139px;
+      margin-top:16px;
     }
     animation-duration: 0.25s;
     animation-timing-function: ease-out;
@@ -84,16 +92,18 @@ const DialogBlock = styled.div`
 `
 
 const ButtonGroup = styled.div`
-    display:flex;
-    justify-content:flex-end;
-    margin-top:10px;
 `
 const ShortMaginBtn = styled(PrimaryButton)`
-    width:70px;
-    height:40px;
-    margin:0;
+    width:183px;
+    height:48px;
+    margin-top:24px;
 `
 const SubShortBtn = styled(SubButton)`
+      position:absolute;
+      background:none;
+      color:black;
+      font-size:24px;      
+      right:0;
     margin:0; 
     width:70px;
     height:40px;
@@ -101,7 +111,7 @@ const SubShortBtn = styled(SubButton)`
 `
 
 interface ChildProps {
-    children:string;
+    children:any;
     title:string;
     confirmtext:string;
     cancelText:string;
@@ -114,7 +124,7 @@ type styleProps = {
     disappear?: boolean;
 }
 
-function Dialog({title, children, confirmtext,cancelText, visible ,onConfirm, onCancel}:ChildProps) {
+function SpaceInfoDialog({title, children, confirmtext,cancelText, visible ,onConfirm, onCancel}:ChildProps) {
 
     const [animate, setAnimate] = useState(false);
     const [localVisible, setLocalVisible] = useState(false);
@@ -133,11 +143,12 @@ function Dialog({title, children, confirmtext,cancelText, visible ,onConfirm, on
         <>
            <DarkBackground disappear={!visible}>
                <DialogBlock disappear={!visible}>
+                    <SubShortBtn onClick={onCancel}>{cancelText}</SubShortBtn>
                     <h3>{title}</h3>
+                    <img src="/images/img.png" alt=""/>
                     <p>{children}</p>
                     <ButtonGroup>
                         <ShortMaginBtn onClick={onConfirm}>{confirmtext}</ShortMaginBtn>
-                        <SubShortBtn onClick={onCancel}>{cancelText}</SubShortBtn>
                     </ButtonGroup>
                </DialogBlock>
            </DarkBackground>
@@ -145,10 +156,10 @@ function Dialog({title, children, confirmtext,cancelText, visible ,onConfirm, on
     )
 }
 
-Dialog.defaultProps = {
+SpaceInfoDialog.defaultProps = {
     confirmText: '확인',
-    cancelText: '취소',
+    cancelText: 'x',
     visible: false
   };
 
-export default Dialog;
+export default SpaceInfoDialog;

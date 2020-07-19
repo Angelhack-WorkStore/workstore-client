@@ -8,7 +8,7 @@ const size = {
     tablet: '600px',
     // tablet: '768px',
     laptop: '1024px',
-    laptopL: '1300px',
+    laptopL: '1200px',
     laptopXL: '1500px',
     desktop: '2560px'
   }

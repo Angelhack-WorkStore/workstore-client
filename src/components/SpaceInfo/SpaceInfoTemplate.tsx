@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import EmptyDiv from './EmptySpaceInfo';
 import FooterContainer from '../../containers/Footer/FooterContainer';
+import {useLocation} from 'react-router-dom';
+import SpacecDetail from './SpaceDetail';
 
 const TemplateContainer = styled.main`
   position:relative;
@@ -26,12 +28,15 @@ type TemplateProps = {
 }
 
 const SpaceInfoTemplate = ({children}:TemplateProps) => {
+
+  const location = useLocation();
+
   return (
     <TemplateContainer>
       <InfoContainer>
         <h2>공간정보 관리</h2>
         <hr/>
-        <EmptyDiv/>
+        {location.state ? <SpacecDetail data={location.state} /> : <EmptyDiv/>}
       </InfoContainer>
       {children}
       <FooterContainer/>

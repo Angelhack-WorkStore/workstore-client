@@ -52,27 +52,8 @@ const DumyAmenities = [
   '테라스/루프탑','공용라운지','전신거울','바베큐시설'
 ]
 const EngDumyAmenities = [
-  'TV',
-  'WIFI',
-  'PRINTER',
-  'WHITEBOARD',
-  'SOUND',
-  'COOKING',
-  'FOOD',
-  'BEVERAGES',
-  'SHOWER',
-  'PARKING',
-  'NO_SMOKE',
-  'PET',
-  'PC',
-  'TABLE',
-  'INTERNAL_TOILET',
-  'DRESS_ROOM',
-  'ROOFTOP',
-  'PUBLIC_ROUNGE',
-  'MIRROR',
-  'FAX',
-  'BARBECUE',
+  'TV','WIFI','PRINTER','WHITEBOARD','SOUND','COOKING','FOOD','BEVERAGES','SHOWER','PARKING',
+  'NO_SMOKE','PET','PC','TABLE','INTERNAL_TOILET','DRESS_ROOM','ROOFTOP','PUBLIC_ROUNGE','MIRROR','FAX','BARBECUE',
 ]
 
 // console.log(svg20);

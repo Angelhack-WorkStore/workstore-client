@@ -231,7 +231,7 @@ const initialState: RegistType = {
     hostEmail:'',
     hostPhoneNumber:''
   },
-  step:'step3',
+  step:'step1',
   images:[],
   description:'',
   content:'',
@@ -289,7 +289,7 @@ const initialState: RegistType = {
   ],
   prices:{
     price:{
-       amount:18400
+       amount:15000
     },
     priceType:'DAY',
     minUsageDay:1,

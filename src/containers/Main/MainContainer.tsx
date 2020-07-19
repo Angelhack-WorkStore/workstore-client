@@ -11,7 +11,7 @@ import Footer from '../Footer/FooterContainer';
 import storage from '../../store/storageHoc';
 import Dialog from '../../components/Common/Dialog';
 import {ACCESS_TOKEN} from '../../store/Contants';
-
+import {device } from "../../styles/MediaHoc";
 const MiddleContainer = styled.div`
   width:100%;
   height:328px;
@@ -30,13 +30,15 @@ const MiddleContainer = styled.div`
 `
 const BottomContainer = styled.div`
   width:100%;
-  height:1273px;
   text-align:center;
   .content_block {
     text-align:center;
     padding-top:90px;
     width:1200px;
     margin:0 auto;
+    @media ${device.laptopL} {
+      width:100%;
+    }
   }
   h2 {
     font-size:44px;
@@ -48,6 +50,17 @@ const BottomContainer = styled.div`
     height:369px;
     text-align:left;
     margin-top:60px;
+    .number {
+      display: inline-block;
+      text-align: center;
+      justify-content:center;
+      align-items:cetner;
+      width:35px;
+      height:35px;
+      background:${({theme}) => theme.accentColor};
+      border-radius:50%;
+      color:white;
+    }
     img {
       position:absolute;
       bottom:0;
@@ -60,12 +73,23 @@ const BottomContainer = styled.div`
     }
     
     h3 {
-      font-size:28px;
+      font-size:26px;
     }
     p {
       margin-top:24px;
       font-size:16px;
       line-height:27px;
+    }
+    @media ${device.laptopL} {
+      display:block;
+      text-align:center;
+      height:auto;
+      div {
+        width:100%;
+      }
+      img {
+        position:relative;
+      }
     }
   }
   .bottom_banner {
@@ -127,12 +151,12 @@ const MainContainer = () => {
           <h2>쉽고 간단한 워크스토어 이용 3단계</h2>
           <div className="flex_box">
             <div>
-              <h3>1. 무료로 공간 등록하기</h3>
+              <h3><span className="number">1</span> 무료로 공간 등록하기</h3>
               <p>점포의 좌석수, 편의시설, 다양한 형태의 공간을 무료<br/> 로 등록하고 공유하세요.</p>
               <img src={main1} alt="image"/>
             </div>
             <div className="margin">
-              <h3>2. 공간 예약 설정하기</h3>
+              <h3><span className="number">2</span> 공간 예약 설정하기</h3>
               <p>
                 예약할 수 있는 날짜, 이용 요금, 이용 시간 등<br/>
                 공간 사용 요건에 대해 순서대로 정보를 입력하시면<br/>
@@ -141,7 +165,7 @@ const MainContainer = () => {
               <img src={main2} alt="image"/>
             </div>
             <div className="margin">
-              <h3>3. 무인점포로 부가수익 올리기</h3>
+              <h3><span className="number">3</span> 무인점포로 부가수익 올리기</h3>
               <p>
                 공간이 게시되면 사용 조건에 부합하는 이용자<br/>
                 가 예약을 합니다. QR코드를 통한 출입관리로 언제든지<br/>

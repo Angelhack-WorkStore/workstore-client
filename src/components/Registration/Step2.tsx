@@ -1,16 +1,16 @@
-import React,{useState} from 'react';
+import React,{useRef} from 'react';
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import {useSelector, useDispatch} from 'react-redux';
 import {PrimaryButton} from '../Common/CustomButton';
 import {Input} from '../Common/CustomInput';
 import SingleImageUploader from '../Common/singleUploadImage/index';
-import {PrevStep, NextStep, putValue, putImage} from '../../store/modules/registration';
+import {PrevStep, putValue, putImage} from '../../store/modules/registration';
 import * as S from './Common.style';
 import TagForm from './TagForm';
 import {RootState} from '../../store/modules/index';
 import { BsArrowLeft } from "react-icons/bs";
-
+import { singleImageAPI } from '../../store/apis/registration';
 
 
 
@@ -38,8 +38,7 @@ const Step2 = () => {
   const {content, description} = useSelector((state:RootState) => state.registration);
   const dispatch = useDispatch();
 
-  const [singlePic,setSinglePic] = useState([]);
-  const [multiPic,setMultiPic] = useState([]);
+  const singleRef = useRef<any>();
 
   const handleSingleDrop = (picture:any) => {
     console.log(picture[0]);
@@ -67,11 +66,27 @@ const Step2 = () => {
     dispatch(PrevStep(3))
   }
 
+  // const handleSingleChange = (event:any) => {
+  //   event.preventDefault();
+  //   const {files} = event.target;
+    
+  //   var form_data = new FormData();
+  //   for(let i = 0; i < files.length; i++) {
+  //     form_data.append('image',files[i]);
+  //   }
+  //   singleImageAPI(form_data);
+  // }
   return (
     <S.StepContainer>
       <h3>공간 소개</h3>
       <h4>대표이미지</h4>
       <p>최대 10MB (JPG, JPEG, PNG)</p>
+      {/* <form encType="multipart/form-data" ref={singleRef} onSubmit={handleSingleChange}>
+        <input type="file" accept="image/*" onChange={handleSingleChange} multiple/>
+      </form>
+      {/* <form id="formElem" encType="multipart/form-data">
+	      <input type="file" className="hidden_input" id="reviewImageFileOpenInput" accept="image/*" multiple>
+      </form> */} 
       <SingleImageUploader
         withIcon={true}
         buttonText='파일 첨부'
@@ -116,7 +131,7 @@ const Step2 = () => {
           value={content} 
           minRows={6} 
           placeholder="공간 소개 내용" 
-          maxLength={150} 
+          maxLength={180} 
           className="textArea"
         />
         <p className="maxLength">{content.length} / 180</p>

@@ -11,6 +11,7 @@ const BannerContainer = styled.div`
   position:relative;
   display:flex;
   align-items:center;
+  justify-content:center;
   width:100%;
   height:600px;
   overflow:hidden;
@@ -21,6 +22,7 @@ const BannerContainer = styled.div`
     z-index:-1;
   }
   .content_box {
+    width:100%;
     margin:0 0 0 151px;
     color:white;
     h3 {

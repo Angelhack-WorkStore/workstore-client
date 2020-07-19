@@ -4,17 +4,19 @@ import {useSelector, useDispatch} from 'react-redux';
 import { BsCheck } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 import {PrimaryButton} from '../Common/CustomButton';
-import {PrevStep, NextStep, selectPriceType} from '../../store/modules/registration';
+import {PrevStep, selectPriceType} from '../../store/modules/registration';
 import {RootState} from '../../store/modules/index';
 import * as S from './Common.style';
 import PriceForm from './PriceForm';
 import {registSaveAPI} from '../../store/apis/registration';
+import {Link} from 'react-router-dom';
 
 
 const ButtonContainer = styled.div`
   display:flex;
   justify-content:space-between;
   width:100%;
+  
   .card_box {
     text-align:center;
     width:285px;
@@ -69,6 +71,7 @@ const RefundRow = styled.div`
 const Step5 = () => {
 
   const registData = useSelector((state:RootState) => state.registration)
+  const {name} = useSelector((state:RootState) => state.authentication);
   const dispatch = useDispatch();
   const {maxUsageDay,minUsageDay,price,priceType} = registData.prices;
 
@@ -124,8 +127,9 @@ const Step5 = () => {
         </RefundRow>
       </RefundContainer>
       <div className="FooterNav">
-        <PrimaryButton className="prev_btn" onClick={() => dispatch(PrevStep(4))}><BsArrowLeft/>&nbsp;이전</PrimaryButton>
-        <PrimaryButton onClick={handleSubmitClock}>등록 완료</PrimaryButton>
+        <PrimaryButton style={{flex:1}} className="prev_btn" onClick={() => dispatch(PrevStep(4))}><BsArrowLeft/>&nbsp;이전</PrimaryButton>
+        <Link to={{pathname:`spaceinfo/${name}`, state:registData}} style={{flex:1}}>
+          <PrimaryButton style={{width:'100%'}} onClick={handleSubmitClock}>등록 완료</PrimaryButton></Link>
       </div>
     </S.StepContainer>
   )

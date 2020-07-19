@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import {PrimaryButton} from '../Common/CustomButton';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Dialog from '../Common/Dialog';
 import storage from '../../store/storageHoc';
 import {ACCESS_TOKEN} from '../../store/Contants';

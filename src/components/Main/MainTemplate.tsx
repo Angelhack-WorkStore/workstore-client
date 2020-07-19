@@ -6,7 +6,7 @@ const MainContainer = styled.main`
   position:relative;
   width:100%;
   height:100%;
-  padding-bottom:254px;
+  padding-bottom:480px;
 `
 
 type TemplateType = {

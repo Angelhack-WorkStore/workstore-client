@@ -104,7 +104,7 @@ const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
       setWidth('20%');
       return (
         <div className="box">
-          <h5>STEP 01<span> - STEP 06</span></h5>
+          <h5>STEP 01<span> - STEP 05</span></h5>
           <h2>공간 정보를<br/> 입력해주세요</h2>
           <p>호스트 등록을 위해 공유하실 공간에 대한<br/> 기본 정보를 알려주세요!</p>
         </div>
@@ -113,7 +113,7 @@ const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
       setWidth('40%');
       return (
         <div className="box">
-          <h5>STEP 02<span> - STEP 06</span></h5>
+          <h5>STEP 02<span> - STEP 05</span></h5>
           <h2>사진과 글로<br/> 공간을 소개해주세요</h2>
           <p>공간에 대해 자세히 설명할 수록<br/> 고객들의 예약률이 높아져요!</p>
         </div>
@@ -122,7 +122,7 @@ const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
       setWidth('60%');
       return (
         <div className="box">
-          <h5>STEP 03<span> - STEP 06</span></h5>
+          <h5>STEP 03<span> - STEP 05</span></h5>
           <h2>세부정보를<br/> 추가해주세요</h2>
           <p>시설정보와 유의사항을 설정해주세요!</p>
         </div>
@@ -131,7 +131,7 @@ const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
       setWidth('80%');
       return (
         <div className="box">
-          <h5>STEP 04<span> - STEP 06</span></h5>
+          <h5>STEP 04<span> - STEP 05</span></h5>
           <h2>이용정보를<br/> 입력해볼까요?</h2>
           <p>고객이 공간을 이용할 시간을 설정해주세요!</p>
         </div>
@@ -140,7 +140,7 @@ const RegistrationTemplate = ({children,stepBoxRef}:TemplateProps) => {
       setWidth('100%');
       return (
         <div className="box">
-          <h5>STEP 05<span> - STEP 06</span></h5>
+          <h5>STEP 05<span> - STEP 05</span></h5>
           <h2>마지막이에요!<br/>운영하실 예약 단위를<br/>선택해주세요</h2>
           <p>예약을 하루 단위로 받으실 건지, 개월 단위로 받으실 건지<br/> 아니면 둘 다 받으실 건지 선택해주세요!</p>
         </div>

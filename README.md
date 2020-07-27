@@ -2,6 +2,12 @@
 
 <img src="./public/images/Logo.png" width="40%" height="30%" title="Workstore" alt="Workstore"></img>
 
+* Demo [https://www.youtube.com/watch?v=q28FG38qDJA&feature=youtu.be&app=desktop]
+* 데모 시연 영상 2분 45초부터 볼 수 있습니다.
+
+### 실행 
+> git clone -> cd 폴더 -> npm install -> npm start
+
 ## WorkStore - owner Client
 > 미운영 시간에 공간을 공유하고 추가 수익과 가게 홍보 효과를 누리세요.
 > O2O 서비스 
@@ -18,10 +24,6 @@
 >2.집 근처 가까운 점포 이용    
 >3.언택트 소비 - 미 운영시간 QR코드로 출입 관리    
 >4.다양한 점포 외식 할인 혜택   
-
-
-> git clone -> cd 폴더 -> npm install -> npm start
-
 
 ## Skill Set
 
